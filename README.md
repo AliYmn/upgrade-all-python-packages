@@ -1,7 +1,7 @@
 
-# Go Python Requirements Updater
+# upgrade-all-python-packages
 
-This Go CLI application scans your existing `requirements.txt` file and updates the Python packages listed to their latest versions. Optionally, it can also install the updated packages automatically.
+This Go CLI tool upgrades Python packages listed in a `requirements.txt` file to their latest versions. It can also optionally install the updated packages.
 
 ## Features
 
@@ -11,101 +11,35 @@ This Go CLI application scans your existing `requirements.txt` file and updates 
 
 ## Installation
 
-1. **Install Go:**
+To install this tool:
 
-   Ensure that Go is installed on your system (Go 1.16 or later is recommended). You can download and install Go from the [official website](https://golang.org/dl/).
-
-2. **Download Project Files:**
-
-   Save the `main.go` file to your project directory.
-
-3. **Prepare the `requirements.txt` for Testing:**
-
-   Copy the following content into a file named `requirements.txt` in the same directory as your Go program:
-
-   ```txt
-   numpy==1.19.5
-   pandas==1.1.5
-   requests==2.24.0
-   Flask==1.1.2
-   Django==3.1.7
-   scikit-learn==0.23.2
-   matplotlib==3.3.3
-   tensorflow==2.4.1
-   pytest==6.2.2
-   SQLAlchemy==1.3.23
-   lxml==4.6.2
-   beautifulsoup4==4.9.3
-   opencv-python==4.5.1.48
-   PyYAML==5.3.1
-   Jinja2==2.11.3
-   gunicorn==20.0.4
-   psycopg2==2.8.6
-   redis==3.5.3
-   pytz==2020.5
-   boto3==1.16.43
-   ```
-
-   This file contains 20 commonly used Python packages, and it can be used to test the functionality of the Go updater tool.
+```bash
+go install github.com/AliYmn/upgrade-all-python-packages@latest
+```
 
 ## Usage
 
-### Build the Program
-
-Navigate to your project directory in the terminal and run:
+To update the `requirements.txt` file:
 
 ```bash
-go build main.go
+upgrade-all-python-packages
 ```
 
-This will create an executable named `main`.
-
-### Run the Program
-
-- **Default Usage:**
-
-  ```bash
-  ./main
-  ```
-
-  This command updates the `requirements.txt` file in the same directory to the latest available versions of the packages.
-
-- **Specify a Different File:**
-
-  ```bash
-  ./main -f path/to/your/requirements.txt
-  ```
-
-- **Update and Install Packages:**
-
-  If you want the program to update the `requirements.txt` file and also install the packages automatically:
-
-  ```bash
-  ./main -i
-  ```
-
-  This will run `pip install -r requirements.txt` after updating the package versions.
-
-### Display Help Message
-
-To see the usage and available options:
+To update a specific file:
 
 ```bash
-./main -h
+upgrade-all-python-packages -f path/to/requirements.txt
 ```
 
-**Output:**
+To update and install the packages:
 
-```
-Usage: ./main [options]
-  -f string
-        Path to the requirements.txt file (default "requirements.txt")
-  -i    Install packages after updating requirements.txt
+```bash
+upgrade-all-python-packages -i
 ```
 
-## Example Test
+## Example
 
-**1. `requirements.txt` File (Before Update):**
+### 1. `requirements.txt` File (Before Update):
 
 ```txt
 numpy==1.19.5
@@ -130,13 +64,13 @@ pytz==2020.5
 boto3==1.16.43
 ```
 
-**Run the Command:**
+### 2. Run the Command:
 
 ```bash
-./main -i
+upgrade-all-python-packages -i
 ```
 
-**2. `requirements.txt` File (After Update):**
+### 3. `requirements.txt` File (After Update):
 
 ```txt
 numpy==1.23.5
@@ -161,18 +95,7 @@ pytz==2021.1
 boto3==1.18.25
 ```
 
-Packages are also automatically installed.
-
 ## Notes
 
 - **Backup:** It's recommended to back up your `requirements.txt` file before running the program.
-- **`pip` Command Availability:** The program assumes that the `pip` command is available on your system. If `pip` is under a different name (like `pip3`), update the code accordingly.
 - **Virtual Environment:** If you're using a Python virtual environment, it's recommended to run the program within that environment.
-
-## Contributing
-
-If you'd like to contribute or report issues, please submit a pull request or open an issue.
-
-## License
-
-This project is licensed under the MIT License.
