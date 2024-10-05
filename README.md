@@ -1,7 +1,7 @@
 
 # Go Python Requirements Updater
 
-This Go CLI application scans your existing `requirements.txt` file and updates the Python packages listed to their latest versions. Optionally, it can also install the updated packages automatically.
+This Go CLI application scans your existing `requirements.txt` file and updates the Python packages listed to their latest versions. Optionally, it can also install the updated packages automatically
 
 ## Features
 
