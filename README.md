@@ -11,7 +11,7 @@ This Go CLI tool upgrades Python packages listed in a `requirements.txt` file to
 
 ## Installation
 
-To install this tool:
+To install upgrade-all-python-packages tool:
 
 ```bash
 go install github.com/AliYmn/upgrade-all-python-packages@latest
