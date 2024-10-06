@@ -166,6 +166,7 @@ func updateRequirements(packages *map[string]string, latestVersions *map[string]
 		if len(matches) > 1 {
 			pkgName := matches[1]
 			if latestVersion, ok := (*latestVersions)[pkgName]; ok {
+				// Update the line with the latest version.
 				newLine := fmt.Sprintf("%s==%s", pkgName, latestVersion)
 				updatedLines = append(updatedLines, newLine)
 				continue
@@ -207,11 +208,11 @@ func installPackages(filename string) error {
 
 // main is the entry point of the application.
 func main() {
-	// Define flags.
+	// Define flags for command-line arguments.
 	filename := flag.String("f", "requirements.txt", "Path to the requirements.txt file")
 	install := flag.Bool("i", false, "Install packages after updating requirements.txt")
 
-	// Custom usage message.
+	// Custom usage message for the command-line tool.
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options]\n", os.Args[0])
 		flag.PrintDefaults()
@@ -219,14 +220,17 @@ func main() {
 
 	flag.Parse()
 
+	// Parse the requirements.txt file to get current package versions.
 	packages, err := parseRequirements(*filename)
 	if err != nil {
 		fmt.Println("Error parsing requirements.txt:", err)
 		return
 	}
 
+	// Fetch the latest versions of the packages.
 	latestVersions := fetchLatestVersions(packages)
 
+	// Update the requirements.txt file with the latest versions.
 	err = updateRequirements(packages, latestVersions, *filename)
 	if err != nil {
 		fmt.Println("Error updating requirements.txt:", err)
@@ -235,6 +239,7 @@ func main() {
 
 	fmt.Println("requirements.txt has been updated to the latest package versions.")
 
+	// Optionally install the packages if the install flag is set.
 	if *install {
 		err = installPackages(*filename)
 		if err != nil {
