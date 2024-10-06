@@ -61,7 +61,6 @@ gunicorn==20.0.4
 psycopg2==2.8.6
 redis==3.5.3
 pytz==2020.5
-boto3==1.16.43
 ```
 
 ### 2. Run the Command:
@@ -92,7 +91,6 @@ gunicorn==20.1.0
 psycopg2==2.9.1
 redis==3.5.3
 pytz==2021.1
-boto3==1.18.25
 ```
 
 ## Notes
