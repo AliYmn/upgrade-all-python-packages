@@ -64,7 +64,7 @@ pytz==2020.5
 ```
 
 ### 2. Run the Command:
-
+Install the latest versions of the packages:
 ```bash
 upgrade-all-python-packages -i
 ```
